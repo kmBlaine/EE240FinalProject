@@ -203,7 +203,7 @@ public class PotentialGrid
 					"\tMax Epsilon: " + currentEpsilon +
 					"\n\tAchieved @\n" +
 					"\t\tr" + eMaxCoordinateY + ", c" + eMaxCoordinateX + " - Grid Absolute\n" +
-					"\t\t(" + ( eMaxCoordinateX * granularity ) + "mm, " + ( eMaxCoordinateY * granularity ) + "mm ) - Cartesian\n\n";
+					"\t\t(" + ( (double)(eMaxCoordinateX) / granularity ) + "mm, " + ( (double)(eMaxCoordinateY) / granularity ) + "mm ) - Cartesian\n\n";
 
 			currentIteration++;
 		}
