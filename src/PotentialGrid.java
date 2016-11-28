@@ -69,7 +69,7 @@ public class PotentialGrid
 	{
 		log = "Created new grid:" +
 				"\n\t" + dimX + "mm X " + dimY + "mm, " +
-				"\n\t" + granularity + " divisions per mm";
+				"\n\t" + granularity + " divisions per mm\n\n";
 		dimX++;
 		dimY++;
 		grid = new PotentialPoint[dimY * granularity - granularity + 1][dimX * granularity - granularity + 1];
@@ -159,6 +159,13 @@ public class PotentialGrid
 	public void calculateSolution( double acceleration, double epsilon )
 	{
 		double currentEpsilon = 1;
+		int currentIteration = 1;
+		int eMaxCoordinateX = 0;
+		int eMaxCoordinateY = 0;
+
+		this.log += "Starting calculation...\n" +
+				"Acceleration Factor: " + acceleration + "\n" +
+				"Target Epsilon: " + epsilon + "\n\n";
 
 		while ( currentEpsilon > epsilon )
 		{
@@ -185,10 +192,24 @@ public class PotentialGrid
 					if ( pointEpsilon > currentEpsilon )
 					{
 						currentEpsilon = pointEpsilon;
+						eMaxCoordinateX = col;
+						eMaxCoordinateY = row;
 					}
 				}
 			}
+
+
+			this.log += "Interation " + currentIteration + " Results:\n" +
+					"\tMax Epsilon: " + currentEpsilon +
+					"\n\tAchieved @\n" +
+					"\t\tr" + eMaxCoordinateY + ", c" + eMaxCoordinateX + " - Grid Absolute\n" +
+					"\t\t(" + ( eMaxCoordinateX * granularity ) + "mm, " + ( eMaxCoordinateY * granularity ) + "mm ) - Cartesian\n\n";
+
+			currentIteration++;
 		}
+
+		this.log += "Finished calculation in " + --currentIteration + " iterations.\n" +
+				"Final Epsilon: " + currentEpsilon + "\n\n";
 	}
 
 	@Override
@@ -214,10 +235,12 @@ public class PotentialGrid
 	public void toFile( String name )
 	{
 		FileWriter outputStream;
+		FileWriter logStream;
 		
 		try
 		{
-			outputStream = new FileWriter( new File(name) );
+			outputStream = new FileWriter( new File(name + ".csv") );
+			logStream = new FileWriter( new File(name + ".log") );
 			
 			for ( int row = grid.length - 1; row >= 0; row-- )
 			{
@@ -230,8 +253,11 @@ public class PotentialGrid
 				
 				outputStream.write( "\n" );
 			}
-			
+
+			logStream.write( log );
+
 			outputStream.close();
+			logStream.close();
 		}
 		catch ( Exception FileError )
 		{

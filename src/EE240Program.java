@@ -36,10 +36,48 @@ public class EE240Program {
 		grid.setFixedRectangle( 2, 10, 28, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
 		
 		grid.setGuess( 50 ); //initial guess of 50V
-		grid.calculateSolution( 1, 0.1 ); //acceleration factor of 1, epsilon 0,.1
+		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
 
-		System.out.println( grid.toString() );
+		//System.out.println( grid.toString() );
 		
-		grid.toFile( "Subdivs1,Acc1,E0.1.csv" );
+		grid.toFile( "Subdivs1,Acc1,E0.01" );
+
+		grid.setGuess( 50 ); //reset grid to initial guess of 50V
+		grid.calculateSolution( 1.5, 0.01 );
+		grid.toFile( "Subdivs1,Acc1.5,E0.01" );
+
+		grid.setGuess( 50 ); //reset grid to initial guess of 50V
+		grid.calculateSolution( 1.7, 0.01 );
+		grid.toFile( "Subdivs1,Acc1.7,E0.01" );
+
+
+/******************************************************************************/
+		//Do the whole thing over again now for a grid with 2 division per mm
+		grid = new PotentialGrid( 32, 32, 2 );
+
+		//set all borders to 0V
+		grid.setFixedLine( grid.getNumberOfRows(), grid.ORIENTATION_VERTICAL, 0, 0, 0 );
+		grid.setFixedLine( grid.getNumberOfRows(), grid.ORIENTATION_VERTICAL, 32, 0, 0 );
+		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 0, 0 );
+		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 32, 0 );
+		
+		grid.setFixedRectangle( 2, 10, 4, 11, 0 ); //2x10 mm, anchored at (4,11) mm, 0V potential
+		grid.setFixedRectangle( 16, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
+		grid.setFixedRectangle( 2, 10, 28, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
+		
+		grid.setGuess( 50 ); //initial guess of 50V
+		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
+
+		//System.out.println( grid.toString() );
+		
+		grid.toFile( "Subdivs2,Acc1,E0.01" );
+
+		grid.setGuess( 50 ); //reset grid to initial guess of 50V
+		grid.calculateSolution( 1.5, 0.01 );
+		grid.toFile( "Subdivs2,Acc1.5,E0.01" );
+
+		grid.setGuess( 50 ); //reset grid to initial guess of 50V
+		grid.calculateSolution( 1.7, 0.01 );
+		grid.toFile( "Subdivs2,Acc1.7,E0.01" );
 	}
 }
