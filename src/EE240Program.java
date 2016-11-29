@@ -32,8 +32,8 @@ public class EE240Program {
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 32, 0 );
 		
 		grid.setFixedRectangle( 2, 10, 4, 11, 0 ); //2x10 mm, anchored at (4,11) mm, 0V potential
-		grid.setFixedRectangle( 16, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
-		grid.setFixedRectangle( 2, 10, 28, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
+		grid.setFixedRectangle( 8, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
+		grid.setFixedRectangle( 2, 10, 26, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
 		
 		grid.setGuess( 50 ); //initial guess of 50V
 		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
@@ -62,8 +62,8 @@ public class EE240Program {
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 32, 0 );
 		
 		grid.setFixedRectangle( 2, 10, 4, 11, 0 ); //2x10 mm, anchored at (4,11) mm, 0V potential
-		grid.setFixedRectangle( 16, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
-		grid.setFixedRectangle( 2, 10, 28, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
+		grid.setFixedRectangle( 8, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
+		grid.setFixedRectangle( 2, 10, 26, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
 		
 		grid.setGuess( 50 ); //initial guess of 50V
 		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
