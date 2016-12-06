@@ -199,7 +199,7 @@ public class PotentialGrid
 			}
 
 
-			this.log += "Interation " + currentIteration + " Results:\n" +
+			this.log += "Iteration " + currentIteration + " Results:\n" +
 					"\tMax Epsilon: " + currentEpsilon +
 					"\n\tAchieved @\n" +
 					"\t\tr" + eMaxCoordinateY + ", c" + eMaxCoordinateX + " - Grid Absolute\n" +
@@ -263,5 +263,9 @@ public class PotentialGrid
 		{
 			System.out.println( FileError );
 		}
+
+		log = "Log reset. Grid:" +
+				"\n\t" + (grid[0].length / granularity) + "mm X " + (grid.length / granularity) + "mm, " +
+				"\n\t" + granularity + " divisions per mm\n\n";
 	}
 }
