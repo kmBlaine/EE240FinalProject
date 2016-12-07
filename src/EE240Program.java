@@ -15,8 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
- * Created by agentKmurph on 17-Nov-16.
+/* File: EE240Program.java
+ * 
+ * PURPOSE:
+ * This is the main method of the program to calculate the solution to a geometry
+ * via Successive Over Relaxation (SOR). The program will create a mesh
+ * and set up the regions of electric potential in the mesh. It will then
+ * calculate the solution to the electric potential for each point based
+ * on a guess and some EPSILON and Acceleration Factor. Once the results have
+ * been obtained, it will export them to a .csv and a .log file. It will 
+ * repeat this process for various EPSILONs and Accerlation Factors as well
+ * as for different mesh resolutions. 
  */
 public class EE240Program {
 
@@ -31,15 +40,13 @@ public class EE240Program {
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 0, 0 );
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 32, 0 );
 		
+		//set fixed regions on the interior of the geometry
 		grid.setFixedRectangle( 2, 10, 4, 11, 0 ); //2x10 mm, anchored at (4,11) mm, 0V potential
-		grid.setFixedRectangle( 8, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
-		grid.setFixedRectangle( 2, 10, 26, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
+		grid.setFixedRectangle( 8, 4, 12, 14, 100); //8x4 mm, anchored at (12,14)mm, 100V potential
+		grid.setFixedRectangle( 2, 10, 26, 11, 0); //2x10 mm, anchroed at (26,11) mm, 0V potential
 		
 		grid.setGuess( 50 ); //initial guess of 50V
 		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
-
-		//System.out.println( grid.toString() );
-		
 		grid.toFile( "Subdivs1,Acc1,E0.01" );
 
 		grid.setGuess( 50 ); //reset grid to initial guess of 50V
@@ -61,15 +68,13 @@ public class EE240Program {
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 0, 0 );
 		grid.setFixedLine( grid.getNumberOfColumns(), grid.ORIENTATION_HORIZONTAL, 0, 32, 0 );
 		
+		//set fixed regions on the interior of the geometry
 		grid.setFixedRectangle( 2, 10, 4, 11, 0 ); //2x10 mm, anchored at (4,11) mm, 0V potential
 		grid.setFixedRectangle( 8, 4, 12, 14, 100); //16x4 mm, anchored at (12,14)mm, 100V potential
 		grid.setFixedRectangle( 2, 10, 26, 11, 0); //2x10 mm, anchroed at (28,11) mm, 0V potential
 		
 		grid.setGuess( 50 ); //initial guess of 50V
 		grid.calculateSolution( 1, 0.01 ); //acceleration factor of 1, epsilon 0,.1
-
-		//System.out.println( grid.toString() );
-		
 		grid.toFile( "Subdivs2,Acc1,E0.01" );
 
 		grid.setGuess( 50 ); //reset grid to initial guess of 50V
